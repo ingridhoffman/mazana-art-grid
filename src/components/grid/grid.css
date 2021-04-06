@@ -1,0 +1,20 @@
+/** @format */
+
+.grid {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.item {
+	flex: 0 0 30%;
+	display: flex;
+	padding: 0.5rem;
+	box-sizing: border-box;
+}
+
+.image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
