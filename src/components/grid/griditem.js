@@ -3,6 +3,7 @@
 import React from "react";
 
 const GridItem = ({ artPiece, handleDrag, handleDrop }) => {
+	const rotateStyle = { transform: "rotate(" + artPiece.rotate + "turn)" };
 	return (
 		<div
 			className="item"
@@ -12,7 +13,7 @@ const GridItem = ({ artPiece, handleDrag, handleDrop }) => {
 			onDragStart={handleDrag}
 			onDrop={handleDrop}
 		>
-			<img src={artPiece.url} alt={artPiece.title} className="image" />
+			<img src={artPiece.url} alt={artPiece.title} className="image" style={rotateStyle} />
 		</div>
 	);
 };
