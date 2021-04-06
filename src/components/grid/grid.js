@@ -37,6 +37,20 @@ const ArtGrid = ({ artArray }) => {
 		});
 	};
 
+	// rotate art 90' clockwise by clicking
+	const handleClick = (e) => {
+		e.preventDefault();
+		const rotateIndex = artArranged.findIndex((artPiece) => artPiece.id === e.currentTarget.id);
+		const newRotation = (artArranged[rotateIndex].rotate += 90);
+		setArtArranged((artArranged) => {
+			let temp = [...artArranged];
+			temp[rotateIndex].rotate = newRotation;
+			console.log("rotation: ", temp[rotateIndex].rotate);
+			console.log("temp: ", temp);
+			return temp;
+		});
+	};
+
 	return (
 		<div className="grid">
 			{artArranged.map((artPiece) => (
@@ -45,6 +59,7 @@ const ArtGrid = ({ artArray }) => {
 					artPiece={artPiece}
 					handleDrag={handleDrag}
 					handleDrop={handleDrop}
+					handleClick={handleClick}
 				/>
 			))}
 		</div>
