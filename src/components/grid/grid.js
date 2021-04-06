@@ -1,7 +1,7 @@
 /** @format */
 
 // Global
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Local
 import "./grid.css";
@@ -9,6 +9,10 @@ import GridItem from "./griditem";
 
 const ArtGrid = ({ artArray }) => {
 	const [artArranged, setArtArranged] = useState(artArray);
+
+	useEffect(() => {
+		console.log("arranged: ", artArranged);
+	}, [artArranged]);
 
 	const swapArt = (dragID, hoverID) => {
 		const dragIndex = artArranged.findIndex((artPiece) => artPiece.id === dragID);
@@ -18,10 +22,11 @@ const ArtGrid = ({ artArray }) => {
 		if (dragIndex === -1 || hoverIndex === -1) {
 			return;
 		}
-		const a = artArranged;
-		[a[dragIndex], a[hoverIndex]] = [a[hoverIndex], a[dragIndex]];
-		console.log("a: ", a);
-		setArtArranged(a);
+		setArtArranged((artArranged) => {
+			let temp = [...artArranged];
+			[temp[dragIndex], temp[hoverIndex]] = [temp[hoverIndex], temp[dragIndex]];
+			return temp;
+		});
 	};
 
 	return (

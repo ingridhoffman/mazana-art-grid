@@ -8,21 +8,23 @@ const GridItem = ({ artPiece, swapArt }) => {
 
 	const [{ isDragging }, connectDrag] = useDrag({
 		type: "IMG",
-		item: { artPiece },
-		collect: (monitor) => {
-			return {
-				isDragging: monitor.isDragging(),
-			};
-		},
+		item: { id: artPiece.id, content: artPiece },
+		collect: (monitor) => ({
+			isDragging: !!monitor.isDragging(),
+		}),
 	});
 
-	const [, connectDrop] = useDrop({
+	const [{ isOver }, connectDrop] = useDrop({
 		accept: "IMG",
-		hover(moving) {
-			console.log("moving: ", moving.artPiece.id);
+		collect: (monitor) => ({
+			isOver: !!monitor.isOver(),
+		}),
 
-			if (moving.artPiece.id !== artPiece.id) {
-				swapArt(moving.artPiece.id, artPiece.id);
+		drop(moving) {
+			console.log("moving: ", moving.id);
+
+			if (moving.id !== artPiece.id) {
+				swapArt(moving.id, artPiece.id);
 			}
 		},
 	});
