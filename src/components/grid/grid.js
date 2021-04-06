@@ -8,23 +8,31 @@ import "./grid.css";
 import GridItem from "./griditem";
 
 const ArtGrid = ({ artArray }) => {
+	// organized array of artwork
 	const [artArranged, setArtArranged] = useState(artArray);
 
 	useEffect(() => {
 		console.log("arranged: ", artArranged);
 	}, [artArranged]);
 
-	const swapArt = (dragID, hoverID) => {
-		const dragIndex = artArranged.findIndex((artPiece) => artPiece.id === dragID);
+	// art being moved
+	const [moveID, setMoveID] = useState();
+	// keep track of art being moved
+	const handleDrag = (e) => {
+		setMoveID(e.currentTarget.id);
+	};
+	// swap art being moved with art in target box
+	const handleDrop = (e) => {
+		const dragIndex = artArranged.findIndex((artPiece) => artPiece.id === moveID);
 		console.log("drag: ", dragIndex);
-		const hoverIndex = artArranged.findIndex((artPiece) => artPiece.id === hoverID);
-		console.log("hover: ", hoverIndex);
-		if (dragIndex === -1 || hoverIndex === -1) {
+		const dropIndex = artArranged.findIndex((artPiece) => artPiece.id === e.currentTarget.id);
+		console.log("drop: ", dropIndex);
+		if (dragIndex === -1 || dropIndex === -1) {
 			return;
 		}
 		setArtArranged((artArranged) => {
 			let temp = [...artArranged];
-			[temp[dragIndex], temp[hoverIndex]] = [temp[hoverIndex], temp[dragIndex]];
+			[temp[dragIndex], temp[dropIndex]] = [temp[dropIndex], temp[dragIndex]];
 			return temp;
 		});
 	};
@@ -32,7 +40,12 @@ const ArtGrid = ({ artArray }) => {
 	return (
 		<div className="grid">
 			{artArranged.map((artPiece) => (
-				<GridItem key={artPiece.id} artPiece={artPiece} swapArt={swapArt} />
+				<GridItem
+					key={artPiece.id}
+					artPiece={artPiece}
+					handleDrag={handleDrag}
+					handleDrop={handleDrop}
+				/>
 			))}
 		</div>
 	);

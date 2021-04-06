@@ -1,10 +1,17 @@
 /** @format */
 // Global
-import React, { createRef } from "react";
+import React from "react";
 
-const GridItem = ({ artPiece, swapArt }) => {
+const GridItem = ({ artPiece, handleDrag, handleDrop }) => {
 	return (
-		<div className="item">
+		<div
+			className="item"
+			draggable={true}
+			id={artPiece.id}
+			onDragOver={(e) => e.preventDefault()}
+			onDragStart={handleDrag}
+			onDrop={handleDrop}
+		>
 			<img src={artPiece.url} alt={artPiece.title} className="image" />
 		</div>
 	);
