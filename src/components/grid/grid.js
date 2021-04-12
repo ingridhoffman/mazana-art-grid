@@ -11,16 +11,23 @@ const ArtGrid = ({ artArray }) => {
 	// organized array of artwork
 	const [artArranged, setArtArranged] = useState(artArray);
 
+	// current grid size
+	// !! using state so this can eventually be dynamically changed by user
+	// !! future gridSize object will include x=number of pieces in each row, y=number of rows, total=method that calculate total number of pieces in grid
+	const [gridSize, setGridSize] = useState({ x: 3, y: 2, total: 6 });
+
 	useEffect(() => {
 		console.log("arranged: ", artArranged);
 	}, [artArranged]);
 
 	// art being moved
 	const [moveID, setMoveID] = useState();
+	// !! set up all these functions as methods on an art object so they get passed with the artpiece instead of each being passed individually
 	// keep track of art being moved
 	const handleDrag = (e) => {
 		setMoveID(e.currentTarget.id);
 	};
+
 	// swap art being moved with art in target box
 	const handleDrop = (e) => {
 		const dragIndex = artArranged.findIndex((artPiece) => artPiece.id === moveID);
@@ -52,17 +59,31 @@ const ArtGrid = ({ artArray }) => {
 	};
 
 	return (
-		<div className="grid">
-			{artArranged.map((artPiece) => (
-				<GridItem
-					key={artPiece.id}
-					artPiece={artPiece}
-					handleDrag={handleDrag}
-					handleDrop={handleDrop}
-					handleClick={handleClick}
-				/>
-			))}
-		</div>
+		<>
+			<div className="grid">
+				{artArranged.slice(0, [gridSize.total]).map((artPiece) => (
+					<GridItem
+						key={artPiece.id}
+						artPiece={artPiece}
+						handleDrag={handleDrag}
+						handleDrop={handleDrop}
+						handleClick={handleClick}
+						inGrid
+					/>
+				))}
+			</div>
+			<div className="extra">
+				{artArranged.slice([gridSize.total]).map((artPiece) => (
+					<GridItem
+						key={artPiece.id}
+						artPiece={artPiece}
+						handleDrag={handleDrag}
+						handleDrop={handleDrop}
+						handleClick={handleClick}
+					/>
+				))}
+			</div>
+		</>
 	);
 };
 export default ArtGrid;

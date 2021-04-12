@@ -6,10 +6,25 @@
 	justify-content: center;
 }
 
-.item {
+.grid-item {
+	/* !! flex will need to eventually take a variable so width will be dependent on size of grid */
 	flex: 0 0 30%;
 	display: flex;
 	padding: 0.5rem;
+	box-sizing: border-box;
+}
+
+.extra {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	border: 1px solid gray;
+}
+
+.extra-item {
+	flex: 0 0 20%;
+	display: flex;
+	padding: 0.2rem;
 	box-sizing: border-box;
 }
 

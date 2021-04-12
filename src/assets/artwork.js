@@ -37,4 +37,28 @@ export const artwork = [
 		title: "artwork 6",
 		rotate: 0,
 	},
+	{
+		id: "a7",
+		url: "https://picsum.photos/id/1026/200",
+		title: "artwork 7",
+		rotate: 0,
+	},
+	{
+		id: "a8",
+		url: "https://picsum.photos/id/1035/200",
+		title: "artwork 8",
+		rotate: 0,
+	},
+	{
+		id: "a9",
+		url: "https://picsum.photos/id/1048/200",
+		title: "artwork 9",
+		rotate: 0,
+	},
+	{
+		id: "a10",
+		url: "https://picsum.photos/id/1054/200",
+		title: "artwork 10",
+		rotate: 0,
+	},
 ];

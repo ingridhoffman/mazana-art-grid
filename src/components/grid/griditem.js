@@ -2,11 +2,15 @@
 // Global
 import React from "react";
 
-const GridItem = ({ artPiece, handleDrag, handleDrop, handleClick }) => {
+// !! need to implement useMemo to eliminate rerendering of items not changing
+
+const GridItem = ({ artPiece, handleDrag, handleDrop, handleClick, inGrid }) => {
+	// transform style to set display orientation of artwork
 	const rotateStyle = { transform: "rotate(" + artPiece.rotate + "deg)" };
+
 	return (
 		<div
-			className="item"
+			className={inGrid ? "grid-item" : "extra-item"}
 			draggable={true}
 			id={artPiece.id}
 			onDragOver={(e) => e.preventDefault()}
