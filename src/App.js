@@ -3,7 +3,7 @@
 // Local
 import "./App.css";
 import { artwork } from "./assets/artwork";
-import ArtGrid from "./components/grid/grid";
+import ArtGrid from "./components/Grid/grid";
 
 function App() {
 	return (
