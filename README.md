@@ -13,3 +13,5 @@ create and purchase their own customized installations.
 
 At this time, I am working on the functionality of the site while she creates the artwork. Current
 site images are open source placeholders.
+
+See the deployed site at: https://ingridhoffman.github.io/mazana-art-grid/
